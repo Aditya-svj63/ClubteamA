@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pen & Stage | Teoler Unbounded</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brand: #8b5cf6; /* Artistic Purple */
+            --brand-dark: #4c1d95;
+            --accent: #f59e0b; /* Stage Gold */
+            --bg-light: #faf5ff;
+            --text-main: #1A1F2B;
+            --text-sub: #475569;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+
+        /* FLOATING NAVIGATION (Shared across all pages) */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(3px);
+            padding: 15px 40px;
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; margin-left: 25px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--brand); }
+
+        /* HERO SECTION */
+        .club-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        .club-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: var(--brand-dark);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* CONTENT CARD */
+        .content-container {
+            max-width: 800px;
+            margin: -60px auto 100px;
+            background: white;
+            padding: 80px 60px;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .content-container h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--brand-dark);
+        }
+
+        .content-container p {
+            font-size: 1.15rem;
+            color: var(--text-sub);
+            margin-bottom: 25px;
+        }
+        img {
+            width: 100px;
+            height: 55px;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 12px;
+            font-weight: bold;
+        }
+          .nav-logo-group { display: flex; align-items: center; gap: 15px; }
+        .highlight-box {
+            background: var(--bg-light);
+            border-left: 5px solid var(--brand);
+            padding: 30px;
+            border-radius: 0 20px 20px 0;
+            margin: 40px 0;
+        }
+
+        .highlight-box h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--brand-dark);
+            margin-bottom: 10px;
+        }
+
+.back-btn {
+    position: fixed;
+    bottom: 125px;
+    right:30px;
+    background: var(--brand-dark);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-btn:hover {
+    background: var(--brand);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(16, 185, 129, 0.2);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .back-btn {
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+        footer { text-align: center; padding: 40px; color: var(--text-sub); border-top: 1px solid #eee; }
+
+        @media (max-width: 768px) {
+            .content-container { padding: 40px 25px; margin-top: 20px; }
+            .club-hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+     <div class="nav-logo-group"><img src ="Teoler-Unbounded-Logo-Transparent.png" alt="School Logo"></img><div class="logo">TEOLER UNBOUNDED</div></div>
+    <div class="nav-links">
+        <a href="Homepage(Main).html">Home</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="About.html" >About</a>
+        <a href="Contact.html">Contact</a>
+    </div>
+</nav>
+
+<header class="club-hero">
+    <div class="badge">Art, Voice & Performance</div>
+    <h1>Pen & Stage</h1>
+    <p>Where every story finds its spotlight.</p>
+</header>
+
+<div class="content-container">
+    <h2>Expression Unbound</h2>
+    <p>
+        Pen and Stage is a creative sanctuary for writers, actors, and poets. We believe that every voice deserves to be heard, whether it’s through the quiet stroke of a pen or a powerful monologue under the theater lights.
+    </p>
+
+    <div class="highlight-box">
+        <h4>Creative Showcases</h4>
+        <p style="margin-bottom:0; font-size: 1rem;">From open mic nights to full-scale dramatic productions, we provide the platform for students to present their vulnerability and vision to the community.</p>
+    </div>
+
+    <p>
+        The club invites guest speakers—authors, playwrights, and theater professionals—to share real-world insights, inspiring members to pursue their passions with professional purpose.
+    </p>
+
+    <p>
+        Joining Pen and Stage means becoming part of a creative family. Members develop critical life skills: public speaking, teamwork, empathy, and leadership. Here, you don’t just learn theater; you learn to connect.
+    </p>
+
+    <p style="text-align: center; font-weight: 700; color: var(--brand); font-size: 1.3rem; margin-top: 50px;">
+        "Every story matters. Every voice deserves a spotlight."
+    </p>
+</div>
+<a href="javascript:history.back()" class="back-btn">← Back</a>
+<footer>
+    <p>© 2026 Binary Club Team-A | Teoler Unbounded</p>
+</footer>
+
+</body>
+</html>

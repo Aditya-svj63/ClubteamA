@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Teoler Unbounded</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --brand: #0052FF; --bg: #F4F7FA; --text: #1A1F2B; --text-main: #1A1F2B; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; }
+
+        /* Floating Nav */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(3px);
+            padding: 15px 40px;
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .nav-logo-group { display: flex; align-items: center; gap: 15px; }
+
+        /* Fixed Nav Image styling */
+        nav img {
+            width: auto;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--brand); }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* Header */
+        .header-alt { padding: 160px 10% 60px; text-align: center; }
+        .header-alt h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; margin-bottom: 10px; }
+
+        /* Gallery Grid */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 0 10% 100px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            height: 350px;
+            background: #e2e8f0;
+            transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        /* Gallery Image styling */
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s ease;
+        }
+
+        .gallery-item:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(60%); }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 25px 25px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            opacity: 0;
+            transition: 0.4s;
+            transform: translateY(20px);
+        }
+        .gallery-item:hover .caption { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .header-alt h1 { font-size: 2.5rem; }
+            .gallery-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo-group">
+            <img src="Teoler-Unbounded-Logo-Transparent.png" alt="School Logo">
+            <div class="logo">TEOLER UNBOUNDED</div>
+        </div>
+        <div class="nav-links">
+        <a href="Homepage(Main).html">Home</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="About.html" >About</a>
+        <a href="Contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="header-alt">
+        <h1>Moments in <span style="color: var(--brand)">Motion.</span></h1>
+        <p>A visual journey through our student-led initiatives.</p>
+    </div>
+
+    <div class="gallery-container">
+        <a href="Unt3.html"><div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1500&q=80" alt="Planet and People">
+            <div class="caption">Planet & People Initiative</div>
+        </div>  </a>
+
+        <a href="Unt2.htm"><div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1500&q=80" alt="Pen and Stage">
+            <div class="caption">Pen & Stage Performance</div>
+        </div>  </a>
+
+        <a href="Unt1.html"><div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1500&q=80" alt="Science"> <div class="caption">Science Club Experiments</div>
+        </div> </a>
+
+        <a href="Unt5.html"><div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Binary Club">
+            <div class="caption">Binary Club Coding Studio</div>
+        </div>                             </a>
+
+        <a href="Unt4.htm"><div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=800&q=80" alt="Artbeat Club">
+            <div class="caption">Artbeat Creative Showcase</div>
+        </div>  </a>
+    </div>
+
+    <footer style="padding: 60px 10%; background: #fff; border-top: 1px solid #eee; text-align: center; color: #718096;">
+        <p>© 2026 Binary Club | Teoler Unbounded</p>
+    </footer>
+</body>
+</html>

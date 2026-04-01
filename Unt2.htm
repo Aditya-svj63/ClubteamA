@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Journey | Pen and Stage</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #a855f7; /* Stage Purple */
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text: #ffffff;
+            --text-dim: #a1a1aa;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- FIXED NAVIGATION --- */
+        header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-group img { 
+            height: 45px; 
+            width: auto; 
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.3)); 
+        }
+
+        .logo-group h1 {
+            font-family:, sans-serif;
+            font-size: 28px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* --- CINEMATIC HERO --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.35) saturate(0.8);
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3.5rem, 12vw, 8rem);
+            font-weight: 700;
+            line-height: 0.9;
+            letter-spacing: -4px;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff 40%, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.5;
+            animation: bounce 2s infinite;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        /* --- DYNAMIC GALLERY GRID --- */
+        .container {
+            max-width: 1400px;
+            margin: 100px auto;
+            padding: 0 5%;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            position: relative;
+            background: var(--glass);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+
+        .card video, .card img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%) brightness(0.7);
+            transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .card:hover video, .card:hover img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1);
+        }
+
+        .card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            transform: translateY(10px);
+            opacity: 0;
+            transition: 0.4s ease;
+        }
+
+        .card:hover .card-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .card-info p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- BACK BUTTON --- */
+        .back-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 2000;
+            transition: 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+
+        .back-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .close:hover { color: var(--accent); transform: rotate(90deg); }
+
+        footer {
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 4rem; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-group">
+            <img src="Teoler-Unbounded-Logo-Transparent.png" alt="School Logo">
+            <h1>Teoler Unbounded</h1>
+        </div>
+        <div style="font-size: 0.7rem; letter-spacing: 2px; opacity: 0.5;">PEN & STAGE PORTFOLIO</div>
+    </header>
+
+    <a href="javascript:history.back()" class="back-btn">← Go Back</a>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="first poem.MP4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <p>Expression & Performance</p>
+            <h1>PEN AND STAGE</h1>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <span>↓</span>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Selected Performances</h2>
+            <p style="color: var(--text-dim);">A showcase of literary and theatrical excellence.</p>
+        </div>
+        
+        <div class="gallery">
+            <div class="card">
+                <video muted loop onmouseover="this.play()" onmouseout="this.pause()">
+                    <source src="first poem.MP4" type="video/mp4">
+                </video>
+                <div class="card-info">
+                    <h3>First Poem</h3>
+                    <p>Poetry Recital / Preview</p>
+                </div>
+            </div>
+
+            </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close" id="closeBtn">&times;</span>
+        <div class="lightbox-content" id="lightboxContent"></div>
+    </div>
+
+    <footer>
+        <p>© 2026 Binary Club Team-A | Teoler Unbounded</p>
+    </footer>
+
+    <script>
+        const cards = document.querySelectorAll('.card video, .card img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = document.getElementById('lightboxContent');
+        const closeBtn = document.getElementById('closeBtn');
+
+        cards.forEach(item => {
+            item.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                if (item.tagName.toLowerCase() === 'video') {
+                    const videoClone = item.cloneNode(true);
+                    videoClone.controls = true;
+                    videoClone.style.maxHeight = '80vh';
+                    videoClone.play();
+                    lightboxContent.innerHTML = '';
+                    lightboxContent.appendChild(videoClone);
+                } else {
+                    const imgClone = item.cloneNode(true);
+                    imgClone.style.maxHeight = '80vh';
+                    lightboxContent.innerHTML = '';
+                    lightboxContent.appendChild(imgClone);
+                }
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.style.display = 'none';
+            lightboxContent.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+    </script>
+
+</body>
+</html>
